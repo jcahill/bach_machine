@@ -4,6 +4,10 @@
   (lambda (s)
     (string-ref s (- (string-length s) 1))))
 
+(define first-character
+  (lambda (s)
+    (string-ref s 0)))
+
 (define voice-1
   (lambda ()
     (let* ((measure-1 (car (shuffle '("r8 e g f e g e c" 
