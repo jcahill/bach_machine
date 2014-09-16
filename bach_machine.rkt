@@ -34,6 +34,16 @@
                                (or (eq? (last-character measure-1) #\c)
                                    (eq? (last-character measure-1) #\4)))
                           (string-replace measure-2-notes "g" "g'" #:all? #f)
-                          measure-2-notes)))
+                          measure-2-notes))
+           
+           (measure-3 (car (shuffle '("g8 a b c f,2~"
+                                      "g4 c, f2~"
+                                      "g8 c, d e f4 f~"
+                                      "g8 c, b c f2~"
+                                      "g8 g c g f4 f~"
+                                      "g2 f~"
+                                      "g8 g f e f2~"
+                                      "g8 e d c f4 f~"
+                                      "g8 c, f e f2~"))))
              
-      (string-join (list measure-1 measure-2)))))
+      (string-join (list measure-1 measure-2 measure-3)))))
