@@ -29,5 +29,11 @@
                                             "g8 g, g' g g2~"
                                             "d8 d g fis g2~"
                                             "g4 g, g'2~"))))
+           
+           (measure-2 (if (and (eq? (first-character measure-2-notes) #\g)
+                               (or (eq? (last-character measure-1) #\c)
+                                   (eq? (last-character measure-1) #\4)))
+                          (string-replace measure-2-notes "g" "g'" #:all? #f)
+                          measure-2-notes)))
              
-      (string-join (list measure-1 measure-2-notes)))))
+      (string-join (list measure-1 measure-2)))))
