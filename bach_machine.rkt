@@ -70,5 +70,15 @@
                           (string-replace measure-5-notes "d" "d," #:all? #f)
                           measure-5-notes))
            
+           (measure-6 (car (shuffle '("e8 c' g e c2"
+                                      "e8 f d e c2"
+                                      "e8 f e d c2"
+                                      "e4 d8 e c2"
+                                      "e8 d e d c2"
+                                      "e8 f g e c2"
+                                      "e8 g e d c2"
+                                      "e8 c e d c2"
+                                      "e4. d8 c2")))))
              
-      (string-join (list measure-1 measure-2 measure-3)))))
+      (string-join (list measure-1 measure-2 measure-3
+                         measure-4 measure-5 measure-6)))))
