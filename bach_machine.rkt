@@ -45,5 +45,15 @@
                                       "g8 g f e f2~"
                                       "g8 e d c f4 f~"
                                       "g8 c, f e f2~"))))
+           
+           (measure-4 (car (shuffle '("f4 f e8 c a' c,"
+                                      "f4 e8 d e4 c"
+                                      "f8 f e d e e d c"
+                                      "f4 e8 d e g e c"
+                                      "f4 f f8 e d c"
+                                      "f4. f8 e d e c"
+                                      "f4 f2 e4"
+                                      "f4 f e a"
+                                      "f8 b, c d e g f e"))))
              
       (string-join (list measure-1 measure-2 measure-3)))))
