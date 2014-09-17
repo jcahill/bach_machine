@@ -55,5 +55,20 @@
                                       "f4 f2 e4"
                                       "f4 f e a"
                                       "f8 b, c d e g f e"))))
+           
+           (measure-5-notes (car (shuffle '("d4 g8 a g a f g"
+                                            "d2. c8 d"
+                                            "d4 g8 a g4. f8"
+                                            "d2 d"
+                                            "d1"
+                                            "d4 g2 f8 g"
+                                            "d4 d8 c d e f4"
+                                            "d4 g, g' f"
+                                            "d4 g g, f'"))))
+           
+           (measure-5 (if (eq? (last-character measure-4) #\a)
+                          (string-replace measure-5-notes "d" "d," #:all? #f)
+                          measure-5-notes))
+           
              
       (string-join (list measure-1 measure-2 measure-3)))))
