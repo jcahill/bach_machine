@@ -82,3 +82,16 @@
              
       (string-join (list measure-1 measure-2 measure-3
                          measure-4 measure-5 measure-6)))))
+
+(define voice-2
+  (lambda ()
+    (let* ((measure-1 (car (shuffle '("r2 c2~"
+                                      "c,2 c'~"
+                                      "c4 e8 d c4 c~"
+                                      "c2. c4~"
+                                      "r2 c4 c~"
+                                      "c8 c, e g c4 c~"
+                                      "c,4 e8 g c4 c~"
+                                      "c1~"
+                                      "r4 c,8 d c4 c'~"))))
+           
