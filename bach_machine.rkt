@@ -95,3 +95,98 @@
                                       "c1~"
                                       "r4 c,8 d c4 c'~"))))
            
+           (measure-2 (car (shuffle '("c4 b8 a b4 g"
+                                      "c8 c b a c b a g"
+                                      "c4 b e8 d c b"
+                                      "c4 b8 a b c d e"
+                                      "c4 c b e"
+                                      "c4 c2 b4"
+                                      "c4 b8 a b d b g"
+                                      "c4 c b b"))))
+           
+           (measure-3-notes (car (shuffle '("a2. aes4"
+                                            "a2 d8 c b a"
+                                            "a2~ a8 c b a"
+                                            "a4 a2 d4"
+                                            "a4 a~ a8 a g f"
+                                            "a2. d4"
+                                            "a2 d,8 f e d"
+                                            "a2~ a8 b c d8"
+                                            "a4 a a8 c a f"))))
+           
+           (measure-3 (if (eq? #\e (last-character measure-2))
+                          (string-replace measure-3-notes "a" "a," #:all? #f)
+                          measure-3-notes))
+           
+           (measure-4-notes (car (shuffle '("g4 c8 b c2~"
+                                            "g8 g c b c4 c~"
+                                            "g4 g c c~"
+                                            "g8 d' c b c4 c~"
+                                            "g8 g a b c2~"
+                                            "g4 g c2~"
+                                            "g2 c4 c~"
+                                            "g4 a8 b c2~"
+                                            "g2 c,4 c'~"))))
+           
+           (measure-4 (if (and (member #\d (string->list measure-3))
+                               (or (eq? (last-character measure-3) #\4)
+                                   (eq? (last-character measure-3) #\8)))
+                          (string-replace measure-4-notes "g" "g," #:all? #f)
+                          measure-4-notes))
+           
+           (measure-5 (car (shuffle '("c4 b8 a b2"
+                                      "c8 c b a b b a b"
+                                      "c2 b4 a8 b"
+                                      "c2 b"
+                                      "c4 b2 a8 b"
+                                      "c4 c b b"
+                                      "c8 a b c b c a b"
+                                      "c4 b~ b8 a b4"
+                                      "c4 b8 a b4 a8 b")))))
+      
+      (string-join (list measure-1 measure-2 measure-3 measure-4 measure-5 "c1")))))
+           
+(define lilypond-template #<<END
+#(set-global-staff-size 19) 
+
+\header {
+  title = "Bach Machine"
+  composer = "C.P.E. Bach"
+  }
+
+\paper {
+  left-margin = 0\cm
+  top-margin = 5\cm
+}
+
+  upper = \relative c'' {
+  \clef treble
+  \key c \major
+  \time 2/2
+
+  TOP VOICE GOES HERE
+}
+
+lower = \relative c' {
+  \clef bass
+  \key c \major
+  \time 2/2
+
+  BOTTOM VOICE GOES HERE
+}
+
+\score {
+  \new PianoStaff <<
+    \set PianoStaff.instrumentName = #"Piano  "
+    \new Staff = "upper" { \upper }
+    \new Staff = "lower" { \lower }
+  >>
+  \layout { }
+  \midi { }
+} 
+END
+  )
+
+(define lilypond-score
+  (lambda()
+  (write-string (string-replace (string-replace lilypond-template "BOTTOM VOICE GOES HERE" (voice-2)) "TOP VOICE GOES HERE" (voice-1)))))
